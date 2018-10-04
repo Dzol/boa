@@ -1,8 +1,11 @@
 package main
 
 import "fmt"
+import "sync"
 
 func main() {
+
+	var wg sync.WaitGroup
 
 	var ping func ()
 	var pong func ()
@@ -12,6 +15,7 @@ func main() {
 
 	ping = func () {
 		var n uint
+		defer wg.Done()
 		for {
 			n = <- c
 			fmt.Println("ping: ", n)
@@ -19,17 +23,17 @@ func main() {
 				n++
 				d <- n
 			} else {
+				close(d)
 				break
 			}
 		}
 	}
 
 	pong = func () {
-		var n uint
+		defer wg.Done()
 		for {
-			n = <- d
-			fmt.Println("pong: ", n)
-			if n < 10 {
+			if n, ok := <- d; ok {
+				fmt.Println("pong: ", n)
 				n++
 				c <- n
 			} else {
@@ -38,8 +42,12 @@ func main() {
 		}
 	}
 
+	wg.Add(2)
+
 	go ping()
 	go pong()
 
 	c <- 0
+
+	wg.Wait()
 }
