@@ -24,5 +24,6 @@ func main() {
 
 	o, _ := json.Marshal(person)
 
-	fmt.Println(o)
+	os.Stdout.Write(o)
+	fmt.Println()
 }
