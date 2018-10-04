@@ -12,23 +12,29 @@ func main() {
 
 	ping = func () {
 		var n uint
-		n = <- c
-		fmt.Println("ping: ", n)
-		if n < 10 {
-			n++
-			d <- n
-			ping()
+		for {
+			n = <- c
+			fmt.Println("ping: ", n)
+			if n < 10 {
+				n++
+				d <- n
+			} else {
+				break
+			}
 		}
 	}
 
 	pong = func () {
 		var n uint
-		n = <- d
-		fmt.Println("pong: ", n)
-		if n < 10 {
-			n++
-			c <- n
-			pong()
+		for {
+			n = <- d
+			fmt.Println("pong: ", n)
+			if n < 10 {
+				n++
+				c <- n
+			} else {
+				break
+			}
 		}
 	}
 
