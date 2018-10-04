@@ -8,6 +8,7 @@ func main() {
 	var pong func ()
 
 	c := make(chan uint)
+	d := make(chan uint)
 
 	ping = func () {
 		var n uint
@@ -15,14 +16,14 @@ func main() {
 		fmt.Println("ping: ", n)
 		if n < 10 {
 			n++
-			c <- n
+			d <- n
 			ping()
 		}
 	}
 
 	pong = func () {
 		var n uint
-		n = <- c
+		n = <- d
 		fmt.Println("pong: ", n)
 		if n < 10 {
 			n++
