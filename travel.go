@@ -26,7 +26,7 @@ func main() {
 
 func displacement(a, v_0, s_0 float64) func(float64) float64 {
 	return func(t float64) float64 {
-		s := (a * math.Pow(t, 2)/ 2.0) + (v_0 * t) + s_0
+		s := (a * math.Pow(t, 2) / 2.0) + (v_0 * t) + s_0
 		return s
 	}
 }

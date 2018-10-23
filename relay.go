@@ -20,11 +20,10 @@ func main() {
 	wg.Wait()
 }
 
-func ping () {
-	var n uint
+func ping() {
 	defer wg.Done()
 	for {
-		n = <- c
+		n := <-c
 		fmt.Println("ping: ", n)
 		if n < 10 {
 			n++
@@ -39,7 +38,7 @@ func ping () {
 func pong() {
 	defer wg.Done()
 	for {
-		if n, ok := <- d; ok {
+		if n, ok := <-d; ok {
 			fmt.Println("pong: ", n)
 			n++
 			c <- n

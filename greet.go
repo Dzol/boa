@@ -9,4 +9,3 @@ func main() {
 func greet(s string) string {
 	return "Hey" + " " + s + "!"
 }
-
