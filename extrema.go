@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+const π = 3.14
+
 func main() {
 	fmt.Println(maximum(4, 8, 15, 16, 23, 42))
 }
