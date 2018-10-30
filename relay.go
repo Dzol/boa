@@ -1,49 +1,29 @@
 package main
 
-import "fmt"
-import "sync"
+import (
+	"fmt"
+	"time"
+)
 
-var wg sync.WaitGroup
-
-var c = make(chan uint)
-var d = make(chan uint)
+type ball uint
 
 func main() {
+	table := make(chan *ball)
 
-	wg.Add(2)
+	go player("ping", table)
+	go player("pong", table)
 
-	go ping()
-	go pong()
-
-	c <- 0
-
-	wg.Wait()
+	table <- new(ball)
+	time.Sleep(1 * time.Second)
+	<-table
 }
 
-func ping() {
-	defer wg.Done()
+func player(name string, table chan *ball) {
 	for {
-		n := <-c
-		fmt.Println("ping: ", n)
-		if n < 10 {
-			n++
-			d <- n
-		} else {
-			close(d)
-			break
-		}
-	}
-}
-
-func pong() {
-	defer wg.Done()
-	for {
-		if n, ok := <-d; ok {
-			fmt.Println("pong: ", n)
-			n++
-			c <- n
-		} else {
-			break
-		}
+		ball := <-table
+		(*ball)++
+		fmt.Println(name, *ball)
+		time.Sleep(100 * time.Millisecond)
+		table <- ball
 	}
 }
