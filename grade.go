@@ -15,5 +15,5 @@ const (
 
 func main() {
 	x := A
-	fmt.Printf("x :: %T\n", x)
+	fmt.Printf("x :: %T = %v\n", x, x)
 }
