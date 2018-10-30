@@ -13,7 +13,7 @@ func main() {
 	go player("ping", table)
 	go player("pong", table)
 
-	table <- new(ball)
+	table <- new(ball) // who gets the ball first... ping or pong?
 	time.Sleep(1 * time.Second)
 	<-table
 }
