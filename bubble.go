@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
-import "bufio"
-import "os"
-import "strings"
-import "strconv"
+import (
+	"fmt"
+	"bufio"
+	"os"
+	"strings"
+	"strconv"
+)
 
 func main() {
 	s := make([]int, 0, 0)
@@ -27,7 +29,7 @@ func main() {
 
 func bubbleSort(s []int) {
 	swapped := false
-	for i, j := 0, 1; j < len(s); i, j = i+1, j+1 {
+	for i, j := 0, 1; i < len(s) - 1 && j < len(s); i, j = i+1, j+1 {
 		if s[i] > s[j] {
 			swap(&s[i], &s[j])
 			swapped = true
