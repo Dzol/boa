@@ -51,7 +51,6 @@ func truncate(s string) string {
 func min(i, j int) int {
 	if i < j {
 		return i
-	} else {
-		return j
 	}
+	return j
 }

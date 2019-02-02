@@ -15,13 +15,13 @@ const (
 )
 
 var x = [...]string{
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-	"Sunday",
+	M:  "Monday",
+	Tu: "Tuesday",
+	W:  "Wednesday",
+	Th: "Thursday",
+	F:  "Friday",
+	Sa: "Saturday",
+	Su: "Sunday",
 }
 
 func (d Day) String() string {

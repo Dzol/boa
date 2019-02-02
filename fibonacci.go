@@ -7,7 +7,7 @@ import (
 
 func main() {
 	go spin()
-	fmt.Printf("\r%d\n", fibonacci(36))
+	fmt.Printf("\r%d\n", fibonacci(64))
 }
 
 func fibonacci(n uint) uint {
@@ -22,9 +22,11 @@ func fibonacci(n uint) uint {
 }
 
 func spin() {
+	const moon string = `🌕🌖🌗🌘🌑🌒🌓🌔`
 	for {
-		for _, c := range `-\|/` {
-			time.Sleep(64 * time.Millisecond); fmt.Printf("\r%c", c)
+		for _, c := range moon {
+			time.Sleep(8 * 16 * time.Millisecond)
+			fmt.Printf("\r%c", c)
 		}
 	}
 }

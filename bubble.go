@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 
 func bubbleSort(s []int) {
 	swapped := false
-	for i, j := 0, 1; i < len(s) - 1 && j < len(s); i, j = i+1, j+1 {
+	for i, j := 0, 1; i < len(s)-1 && j < len(s); i, j = i+1, j+1 {
 		if s[i] > s[j] {
 			swap(&s[i], &s[j])
 			swapped = true
